@@ -25,6 +25,7 @@ export default function Hooks() {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount();
 
   const [isMounted, setIsMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // if (isConnecting) return <div>Connecting…</div>
   // if (isDisconnected) return <div>Disconnected</div>
@@ -57,12 +58,28 @@ export default function Hooks() {
   // Track modal events
   const events = useWeb3ModalEvents();
 
-  if (!isMounted) {
-    // Ensures no hydration issues
-    return null;
+  useEffect(() => {
+    // If the wallet is connected, set loading to false
+    if (isConnected || isDisconnected) {
+      setLoading(false);
+    }
+  }, [isConnected, isDisconnected]);
+
+  // if (!isMounted) {
+  //   // Ensures no hydration issues
+  //   return null;
+  // }
+
+  // console.log(isMounted, loading);
+  if (
+    !isMounted
+    // || loading
+  ) {
+    return null; // Ensure no hydration issues or loading issues
   }
 
   const handleConnect = () => {
+    setLoading(true);
     open();
   };
 
@@ -81,14 +98,21 @@ export default function Hooks() {
       {!isConnected ? (
         <button
           onClick={handleConnect}
-          disabled={isConnecting}
+          // disabled={isConnecting}
+          // className={`px-6 py-2 bg-green-600 text-white rounded-md transition-all duration-300 ${
+          //   isConnecting
+          //     ? "opacity-50 cursor-not-allowed"
+          //     : "hover:bg-green-700"
+          // }`}
+          disabled={isConnecting || loading}
           className={`px-6 py-2 bg-green-600 text-white rounded-md transition-all duration-300 ${
-            isConnecting
+            isConnecting || loading
               ? "opacity-50 cursor-not-allowed"
               : "hover:bg-green-700"
           }`}
         >
-          {isConnecting ? "Loading..." : "Connect Wallet"}
+          {/* {isConnecting ? "Loading..." : "Connect Wallet"} */}
+          {isConnecting || loading ? "Loading..." : "Connect Wallet"}
         </button>
       ) : (
         <div className="flex items-center space-x-4">
