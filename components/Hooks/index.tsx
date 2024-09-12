@@ -97,12 +97,13 @@ export default function Hooks() {
   const { open } = useWeb3Modal();
   const { address, status, isConnected, isConnecting } = useAccount();
   // Check if modal is open in addition to the status === "connecting" check, to fix issues with connecting status causing issues in production
+  // Using open check with status check together fixes the issues with Connect button stuck on Loading... in production, this would work with both this implementation of the custom Connect Button and with the other implementation that is also present in this file
   const { open: modalOpen, selectedNetworkId } = useWeb3ModalState();
 
-  console.log("STATUS ", status);
-  console.log("IS CONNECTED ", isConnected);
-  console.log("IS CONNECTING ", isConnecting);
-  console.log("MODAL OPEN ", modalOpen);
+  // console.log("STATUS ", status);
+  // console.log("IS CONNECTED ", isConnected);
+  // console.log("IS CONNECTING ", isConnecting);
+  // console.log("MODAL OPEN ", modalOpen);
 
   // useEffect(() => {
   //   if (status === "connecting") {

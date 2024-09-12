@@ -32,6 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // The initialState returned by cookieToInitialState, contains the optimistic values that will populate the Wagmi's store both on the server and client
+  // There are some cookie error messages in the console probably caused by cookieToInitialState wagmi function? In config/index.ts file if we remove cookie storage so it defaults back to using localstorage the error persists, so assuming its not caused by using cookie storage, but rather by this function that we need to use in both cases.
   const initialState = cookieToInitialState(config, headers().get("cookie"));
 
   return (
