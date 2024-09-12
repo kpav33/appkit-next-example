@@ -88,7 +88,7 @@ export default function Hooks() {
   // };
 
   const [mounted, setMounted] = useState(false);
-  const [showLoading, setShowLoading] = useState(true);
+  // const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -96,34 +96,35 @@ export default function Hooks() {
 
   const { open } = useWeb3Modal();
   const { address, status, isConnected, isConnecting } = useAccount();
+  // Check if modal is open in addition to the status === "connecting" check, to fix issues with connecting status causing issues in production
+  const { open: modalOpen, selectedNetworkId } = useWeb3ModalState();
 
   console.log("STATUS ", status);
   console.log("IS CONNECTED ", isConnected);
   console.log("IS CONNECTING ", isConnecting);
+  console.log("MODAL OPEN ", modalOpen);
 
-  useEffect(() => {
-    if (status === "connecting") {
-      setShowLoading(true);
-    } else {
-      setShowLoading(false);
-    }
-  }, [status]);
+  // useEffect(() => {
+  //   if (status === "connecting") {
+  //     setShowLoading(true);
+  //   } else {
+  //     setShowLoading(false);
+  //   }
+  // }, [status]);
 
   // If we want to use the Loading... text in the custom button then on initial load the loading message will also show up for a couple of seconds, since for some reason the account status gets set to connecting in an attempt to auto connect or something like that for some reason?
   if (!address && mounted) {
     return (
       <button
         onClick={() => open()}
-        disabled={status === "connecting" && showLoading}
+        disabled={status === "connecting" && modalOpen}
         className={`px-6 py-2 bg-green-600 text-white rounded-md transition-all duration-300 ${
-          status === "connecting"
+          status === "connecting" && modalOpen
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-green-700"
         }`}
       >
-        {status === "connecting" && showLoading
-          ? "Loading..."
-          : "Connect Wallet"}
+        {status === "connecting" && modalOpen ? "Loading..." : "Connect Wallet"}
       </button>
     );
   }
