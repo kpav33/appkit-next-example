@@ -22,6 +22,12 @@ createWeb3Modal({
   metadata,
   wagmiConfig: config,
   projectId,
+  // On-Ramp enabled by default, this enableds users to sign in to their Coinbase accounts and utilize fiat payment methods for purchasing cryptocurrencies
+  // enableOnramp: false,
+  // Swaps allow users to exchange one cryptocurrency for another directly inside of the AppKit modal, 1inch used as swap provider
+  // Swaps are only available for users who log in via email or social login, there is a 0.85% transaction fee, not available on testnets, limited to tokens available on 1inch
+  // Swaps are currently in Beta! Enabled by default, set to false if you don't want to use it
+  // enableSwaps: false,
   //   enableAnalytics: true, // Optional - defaults to your Cloud configuration
   enableAnalytics: false,
   // defaultChain: mainnet,

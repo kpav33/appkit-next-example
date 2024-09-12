@@ -11,6 +11,8 @@ import Hooks from "@/components/Hooks";
 
 // https://docs.walletconnect.com/appkit/next/onboarding/socials => Check out how to perform user onboarding with email and socials accounts
 
+// In public folder in /.well-known/walletconnect.txt we have a code for domain verification purposes for wallet connect Verify API
+
 export default function Home() {
   return (
     <section className="px-4 py-2">
