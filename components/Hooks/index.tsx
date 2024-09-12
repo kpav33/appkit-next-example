@@ -11,6 +11,7 @@ import {
 import { useAccount, useDisconnect, useSignMessage } from "wagmi";
 import { shortenAddress } from "@/utils";
 
+// All of the available hooks are presented here with also two different implementation for a custom Connect Button
 export default function Hooks() {
   // const { open, close } = useWeb3Modal();
   // // https://docs.walletconnect.com/appkit/next/core/hooks
@@ -36,7 +37,7 @@ export default function Hooks() {
   // // Track modal state
   // const { open: openState, selectedNetworkId } = useWeb3ModalState();
 
-  // // We can also setup theming in layout.tsx file instead?
+  // // We can also setup theming in layout.tsx file instead? Yes in createWeb3Modal function.
   // const { themeMode, themeVariables, setThemeMode, setThemeVariables } =
   //   useWeb3ModalTheme();
   // //   setThemeMode("dark");
@@ -58,6 +59,7 @@ export default function Hooks() {
   // // Track modal events
   // const events = useWeb3ModalEvents();
 
+  // First example Button implementation
   // useEffect(() => {
   //   // If the wallet is connected, set loading to false
   //   if (isConnected || isDisconnected) {
@@ -87,6 +89,7 @@ export default function Hooks() {
   //   disconnect();
   // };
 
+  // Second example Button implementation
   const [mounted, setMounted] = useState(false);
   // const [showLoading, setShowLoading] = useState(true);
 
@@ -113,6 +116,7 @@ export default function Hooks() {
   //   }
   // }, [status]);
 
+  // Second example
   // If we want to use the Loading... text in the custom button then on initial load the loading message will also show up for a couple of seconds, since for some reason the account status gets set to connecting in an attempt to auto connect or something like that for some reason?
   if (!address && mounted) {
     return (
@@ -130,6 +134,7 @@ export default function Hooks() {
     );
   }
 
+  // First example
   // return (
   //   // <div>
   //   //   <button>Connect Wallet</button>
@@ -176,6 +181,7 @@ export default function Hooks() {
   //   </div>
   // );
 
+  // Second example
   return (
     mounted &&
     address && (

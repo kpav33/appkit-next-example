@@ -21,6 +21,16 @@ export const metadata = {
 
 // Create wagmiConfig
 const chains = [mainnet, sepolia] as const;
+
+// Regarding Smart Accounts => https://docs.walletconnect.com/appkit/next/onboarding/smart-accounts
+// Smart Accounts (SAs), enabled by default in AppKit, are smart contract-based accounts that replace traditional Externally Owned Accounts (EOAs). They follow the ERC-4337 standard and support features like automated transactions, multi-signature authorization, and enhanced security. They are deployed alongside the first transaction, until then a precalculated address (counterfactual address) is displayed.
+// Available on multiple networks including Base Sepolia, Binance Smart Chain (BSC), Polygon, Optimism, and others.
+// Available to users with email or social logins (Magic logins).
+// SAs do not require private keys or seed phrases; they rely on designated signers (passkeys or EOA signatures).
+// They enable use cases such as automated transactions, multi-signature authorization, delegated transactions, enhanced security, custom logic for transaction rules and workflows that align with personal or business requirements and interoperability with dApps and DeFi.
+// Users can assign memorable names to their SAs using ENS ("johnsmith.wcn.id"), which work across different supported networks.
+// Activating a Smart Account involves a small additional cost, added to the first transaction. This fee covers the network costs for deploying the smart contract on-chain.
+
 export const config = defaultWagmiConfig({
   chains,
   projectId,

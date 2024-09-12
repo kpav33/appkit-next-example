@@ -68,14 +68,14 @@ createWeb3Modal({
   // ],
   // ----------------------------------------------------------------
   // Theming options
-  // themeMode: "light",
+  themeMode: "light",
   // themeVariables: {
   //   "--w3m-color-mix": "#00BB7F",
   //   "--w3m-color-mix-strength": 40,
   //   "--w3m-font-family": "sans-serif",
-  //   "--w3m-accent": "red",
-  //   "--w3m-font-size-master": "18px",
-  //   "--w3m-border-radius-master": "15px",
+  //   "--w3m-accent": "#e2e2e2",
+  //   "--w3m-font-size-master": "10px",
+  //   "--w3m-border-radius-master": "0px",
   //   "--w3m-z-index": 10,
   // },
 });
