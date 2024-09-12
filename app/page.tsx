@@ -8,6 +8,7 @@
 import ConnectButton from "@/components/ConnectButton";
 import ContractInteraction from "@/components/ContractInteraction";
 import Hooks from "@/components/Hooks";
+import NotificationsContainer from "@/components/NotificationsContainer";
 
 // https://docs.walletconnect.com/appkit/next/onboarding/socials => Check out how to perform user onboarding with email and socials accounts
 
@@ -21,6 +22,8 @@ import Hooks from "@/components/Hooks";
 // https://docs.walletconnect.com/appkit/next/cloud/analytics => Analytics overview
 
 // https://docs.walletconnect.com/appkit/next/cloud/analytics => Notification API setup
+// If you cant enable the Notify API, make sure that you added a _headers file for Netlify and enabled CORS there as well, after that it should work
+// The notifications are currently still in Alpha!
 
 export default function Home() {
   return (
@@ -29,6 +32,9 @@ export default function Home() {
       <ConnectButton />
       <ContractInteraction />
       <Hooks />
+      <div className="mt-2 mb-2">
+        <NotificationsContainer />
+      </div>
     </section>
   );
 }
