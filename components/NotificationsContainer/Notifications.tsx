@@ -73,6 +73,7 @@ function Notifications() {
   }, [notifications]);
 
   // https://docs.walletconnect.com/appkit/next/notifications/frontend-integration/api#notification-types
+  // Notification images are retrieved from notification types
   // const { data: types, update } = useNotificationTypes();
 
   // https://docs.walletconnect.com/appkit/next/notifications/frontend-integration/api#registering-for-device-push-notifications
@@ -97,7 +98,7 @@ function Notifications() {
         // alert("New message available!");
         // Increment unread count manually if not updated automatically
         // Increments twice on localhost, should work in production?
-        setUnreadCount((prevCount) => prevCount + 1);
+        // setUnreadCount((prevCount) => prevCount + 1);
       }
     });
   }, [client]);

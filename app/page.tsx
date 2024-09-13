@@ -9,6 +9,7 @@ import ConnectButton from "@/components/ConnectButton";
 import ContractInteraction from "@/components/ContractInteraction";
 import Hooks from "@/components/Hooks";
 import NotificationsContainer from "@/components/NotificationsContainer";
+import SendNotification from "@/components/SendNotification";
 
 // https://docs.walletconnect.com/appkit/next/onboarding/socials => Check out how to perform user onboarding with email and socials accounts
 
@@ -25,6 +26,11 @@ import NotificationsContainer from "@/components/NotificationsContainer";
 // If you cant enable the Notify API, make sure that you added a _headers file for Netlify and enabled CORS there as well, after that it should work
 // The notifications are currently still in Alpha!
 
+// https://docs.walletconnect.com/appkit/next/notifications/backend-integration => Using notify api with backend integration
+// Instead of using the walletconnect UI to send notifications, we could create an api to do that instead
+// We can use the api to send notification, get subscribers, mark all notifications as read
+// The walletconnect api is rate limited!
+
 export default function Home() {
   return (
     <section className="px-4 py-2">
@@ -34,6 +40,9 @@ export default function Home() {
       <Hooks />
       <div className="mt-2 mb-2">
         <NotificationsContainer />
+      </div>
+      <div className="my-10">
+        <SendNotification />
       </div>
     </section>
   );
