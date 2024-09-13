@@ -8,6 +8,7 @@ import {
   useRegister,
   useSubscribe,
   useSubscription,
+  useAllSubscriptions,
   useUnsubscribe,
   useWeb3InboxAccount,
   useWeb3InboxClient,
@@ -30,12 +31,17 @@ export default function NotificationsContainer() {
     useWeb3InboxClient();
   // console.log(w3iClient);
   // console.log(w3iClientIsLoading);
+
+  // Old hook was useW3iAccount
+  // https://docs.walletconnect.com/appkit/next/notifications/frontend-integration/api#managing-account
+  // isRegistered, data, identityKey, setAccount, error, isLoading
   const { isRegistered } = useWeb3InboxAccount(`eip155:1:${address}`);
   // console.log("IS REGISTERED ", isRegistered);
 
   // Registration of your address to allow notifications
   // This is done via a signature of a message (SIWE) and the
   // signMessageAsync function from wagmi
+  // https://docs.walletconnect.com/appkit/next/notifications/frontend-integration/api#registering-an-account
   const handleRegistration = async () => {
     try {
       const { message, registerParams } = await prepareRegistration();
@@ -49,11 +55,15 @@ export default function NotificationsContainer() {
   // Subscription to dapp notifications
   // Subscribe can be called as a function post registration
   // Can be moved above but shown for example clarity
+  // https://docs.walletconnect.com/appkit/next/notifications/frontend-integration/api#managing-subscription => Check the docs for different options, we can also subscribe to a dapp for a different user (useful in dapps that have multiple active accounts)
   const { subscribe, isLoading: isSubscribing } = useSubscribe();
   const { unsubscribe, isLoading: isUnsubscribing } = useUnsubscribe();
   const { data: subscription } = useSubscription();
   // console.log("DATA SUBSCRIPTION ", subscription);
   const isSubscribed = Boolean(subscription);
+  // get all subscriptions for current account
+  const subscriptions = useAllSubscriptions();
+  // console.log("SUBSCRIPTIONS ", subscriptions);
 
   //   Object { context: "notifyClient" }
   //  Failed to fetch dapp's DID doc from https://https://kpav-appkit-next-example.netlify.app/.well-known/did.json. Error: Network Error
